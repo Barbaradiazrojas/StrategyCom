@@ -1,0 +1,21 @@
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.sidebar-nav a {
+  color: white;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.sidebar-nav a:hover {
+  background-color: #555;
+}
