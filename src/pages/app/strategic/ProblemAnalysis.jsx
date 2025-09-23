@@ -1,5 +1,6 @@
 // frontend/src/pages/app/strategic/ProblemAnalysis.jsx
 import React, { useState, useEffect } from 'react';
+import './ProblemAnalysis.css';
 import { 
   AlertCircle, 
   Target, 
