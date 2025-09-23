@@ -1,0 +1,156 @@
+/* Estilos para el contenedor principal y el contenido */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--secondary-color);
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  padding: 20px;
+}
+
+/* Estilos para el header/topbar */
+.topbar {
+  background: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+
+/* Estilos para el área de contenido */
+.content-area {
+  padding: 1rem;
+}
+
+/* Estilos para el encabezado de sección */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Estilos para las tarjetas del dashboard */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Estilos para el breadcrumb */
+.breadcrumb {
+  padding: 0;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.breadcrumb-item {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #64748b;
+}
+
+/* Estilos para la lista de tareas */
+.list-group {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.list-group-item h6 {
+  margin-bottom: 0.25rem;
+  color: #1e293b;
+}
+
+.list-group-item p {
+  margin-bottom: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Estilos para el gráfico circular de progreso */
+.progress-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1rem;
+}
+
+.progress-circle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-circle-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-circle-text div:first-child {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.progress-circle-text div:last-child {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* Estilos para los badges */
+.badge {
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+/* Estilos para los botones */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Responsive: ajustes para móviles */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+}

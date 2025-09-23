@@ -1,0 +1,18 @@
+/* App.css */
+.layout-container {
+  display: flex;
+  min-height: calc(100vh - 120px);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+}

@@ -1,0 +1,117 @@
+.canvas-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--secondary-color);
+}
+
+.canvas-content {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  padding: 20px;
+}
+
+.content-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.breadcrumb {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  font-size: 0.9rem;
+}
+
+.breadcrumb-item {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #64748b;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.canvas-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "socios actividades propuesta clientes clientes"
+    "socios recursos canales clientes"
+    "costos costos ingresos ingresos";
+  gap: 1rem;
+  margin: 2rem 0;
+  min-height: 400px;
+}
+
+.canvas-box {
+  border: 2px dashed #d1d5db;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.canvas-box:hover {
+  border-color: var(--primary-color);
+  background: #eff6ff;
+  cursor: pointer;
+}
+
+.canvas-title {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.text-muted {
+  color: #64748b !important;
+  font-size: 0.85rem;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .canvas-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "socios"
+      "actividades"
+      "propuesta"
+      "clientes"
+      "relacion"
+      "recursos"
+      "canales"
+      "costos"
+      "ingresos";
+  }
+}
+
+@media (max-width: 768px) {
+  .canvas-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+}
