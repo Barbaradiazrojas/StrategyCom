@@ -1,0 +1,746 @@
+/* frontend/src/pages/app/strategic/ValueChain.css */
+
+.value-chain-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.header-content p {
+  color: #64748b;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Botones */
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: white;
+  color: #475569;
+  border: 2px solid #e2e8f0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.btn-icon:hover {
+  background: #f1f5f9;
+  color: #3b82f6;
+}
+
+/* Diagrama Principal */
+.value-chain-diagram {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+/* Actividades de Soporte */
+.support-activities-section {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  padding: 24px;
+  border-bottom: 3px solid #0ea5e9;
+  position: relative;
+}
+
+.support-activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Actividades Primarias */
+.primary-activities-section {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  padding: 24px;
+  position: relative;
+}
+
+.primary-activities-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+}
+
+.section-title h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  text-align: center;
+}
+
+/* Indicador de Margen */
+.margin-indicator {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: white;
+  padding: 12px 8px;
+  border-radius: 8px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* Actividades */
+.value-chain-activity {
+  background: white;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.value-chain-activity:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.support-activity {
+  border-color: #0ea5e9;
+}
+
+.primary-activity {
+  border-color: #10b981;
+}
+
+.activity-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.activity-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activity-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: help;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  background: #1e293b;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 10;
+  max-width: 200px;
+  white-space: normal;
+}
+
+.activity-info:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.activity-content {
+  padding: 16px;
+}
+
+.activity-items {
+  margin-bottom: 16px;
+  min-height: 80px;
+}
+
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border-left: 4px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+.activity-item:hover {
+  background: #f1f5f9;
+  border-left-color: #3b82f6;
+}
+
+.item-description {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.item-values {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-cost {
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.item-value {
+  color: #059669;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.btn-remove:hover {
+  background: #fee2e2;
+}
+
+/* Formulario para agregar items */
+.add-item-form {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  border: 2px dashed #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input.small {
+  width: auto;
+  margin-bottom: 0;
+}
+
+.item-inputs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-add {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-add:hover {
+  background: #059669;
+}
+
+/* Resumen de Actividad */
+.activity-summary {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 12px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+}
+
+.summary-item span:first-child {
+  color: #64748b;
+}
+
+.cost-value {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.value-value {
+  color: #059669;
+  font-weight: 600;
+}
+
+.margin-item {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.margin-value.positive {
+  color: #059669;
+  font-weight: 700;
+}
+
+.margin-value.negative {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* Resumen Financiero */
+.financial-summary {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.summary-card {
+  padding: 24px;
+}
+
+.summary-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.summary-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #e2e8f0;
+}
+
+.main-metric {
+  border-left-color: #fbbf24;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.metric-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.metric-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.metric-value.cost {
+  color: #dc2626;
+}
+
+.metric-value.value {
+  color: #059669;
+}
+
+.metric-value.positive {
+  color: #059669;
+}
+
+.metric-value.negative {
+  color: #dc2626;
+}
+
+/* Panel de Análisis */
+.analysis-panel {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.analysis-header {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.analysis-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.analysis-content {
+  padding: 24px;
+}
+
+.analysis-section {
+  margin-bottom: 24px;
+}
+
+.analysis-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+}
+
+.analysis-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.analysis-section li {
+  margin-bottom: 8px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.analysis-section li strong {
+  color: #1e293b;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .primary-activities-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .support-activities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .value-chain-container {
+    padding: 16px;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .primary-activities-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .support-activities-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-metrics {
+    grid-template-columns: 1fr;
+  }
+  
+  .margin-indicator {
+    position: static;
+    transform: none;
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  .item-inputs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .form-input.small {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .activity-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .item-values {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .metric {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 10px 16px;
+    font-size: 0.875rem;
+  }
+}
+
+/* Animaciones */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.value-chain-activity {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.main-metric {
+  animation: pulse 2s infinite;
+}
+
+/* Estados de carga */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #64748b;
+}
+
+.loading-spinner {
+  border: 3px solid #f3f4f6;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Efectos hover mejorados */
+.value-chain-activity:hover .activity-header {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.support-activity:hover {
+  border-color: #0284c7;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.15);
+}
+
+.primary-activity:hover {
+  border-color: #059669;
+  box-shadow: 0 8px 24px rgba(5, 150, 105, 0.15);
+}
+
+/* Mejoras de accesibilidad */
+.btn-primary:focus,
+.btn-secondary:focus,
+.btn-icon:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Indicadores visuales adicionales */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.activity-item.new-item {
+  border-left-color: #10b981;
+  background: #f0fdf4;
+  animation: slideInUp 0.3s ease-out;
+}
+
+/* Estilos para impresión */
+@media print {
+  .value-chain-container {
+    background: white;
+    box-shadow: none;
+  }
+  
+  .header-actions,
+  .btn-remove,
+  .btn-icon,
+  .add-item-form {
+    display: none;
+  }
+  
+  .value-chain-diagram {
+    break-inside: avoid;
+  }
+  
+  .analysis-panel {
+    break-inside: avoid;
+    margin-top: 20px;
+  }
+}
