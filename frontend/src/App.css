@@ -1,18 +1,24 @@
-/* App.css */
-.layout-container {
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  min-height: 100vh;
   display: flex;
-  min-height: calc(100vh - 120px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
 }
 
-.main-content {
-  flex: 1;
-  padding: 20px;
+.App-header a {
+  color: #61dafb;
+  text-decoration: none;
 }
 
-.card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px;
+.App-header a:hover {
+  text-decoration: underline;
 }

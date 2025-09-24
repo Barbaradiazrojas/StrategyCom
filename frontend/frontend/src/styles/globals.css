@@ -1,0 +1,17 @@
+/* frontend/src/styles/globals.css */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #f8fafc;
+  --accent-color: #10b981;
+  --sidebar-width: 280px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+}
