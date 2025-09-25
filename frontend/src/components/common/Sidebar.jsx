@@ -1,290 +1,191 @@
 // frontend/src/components/common/Sidebar.jsx
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
 import { 
-  Home, 
-  BarChart3, 
-  Target, 
-  Zap, 
-  Globe, 
-  Shield, 
-  Link2, 
-  TrendingUp,
-  Activity,
-  Award,
-  ChevronLeft,
-  ChevronRight,
-  FileText,
-  Eye,
-  Compass,
-  Flag,
-  Settings,
-  DollarSign,
-  PieChart,
-  Calendar,
-  Briefcase
+  BarChart3, Target, MessageSquare, Users, Calendar, FileText, 
+  TrendingUp, Brain, Lightbulb, PieChart, Building, DollarSign,
+  ChevronDown, ChevronRight
 } from 'lucide-react';
-import './Sidebar.css';
 
-const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const location = useLocation();
+const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
+  const [expandedSections, setExpandedSections] = React.useState({
+    strategic: false,
+    marketing: false,
+    operations: false,
+    financial: false
+  });
 
-  const menuStructure = [
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const menuItems = [
     {
-      category: '',
+      id: 'dashboard',
+      label: 'Dashboard',
+      icon: BarChart3,
+      type: 'single'
+    },
+    {
+      id: 'strategic',
+      label: 'Análisis Estratégico',
+      icon: Brain,
+      type: 'section',
+      expanded: expandedSections.strategic,
       items: [
-        {
-          title: 'Panel principal de control',
-          path: '/dashboard',
-          icon: Home,
-          color: 'text-blue-600'
-        }
+        { id: 'problem-analysis', label: 'Análisis de Problemas', icon: Target },
+        { id: 'canvas-method', label: 'Canvas Method', icon: Lightbulb },
+        { id: 'pestel-analysis', label: 'Análisis PESTEL', icon: TrendingUp },
+        { id: 'porter-forces', label: 'Fuerzas de Porter', icon: Building },
+        { id: 'benchmarking', label: 'Benchmarking', icon: PieChart },
+        { id: 'swot-analysis', label: 'Análisis SWOT', icon: Target }
       ]
     },
     {
-      category: 'ANÁLISIS ESTRATÉGICO',
+      id: 'marketing',
+      label: 'Plan de Marketing',
+      icon: MessageSquare,
+      type: 'section',
+      expanded: expandedSections.marketing,
       items: [
-        {
-          title: 'Problema',
-          path: '/problem-analysis',
-          icon: BarChart3,
-          color: 'text-blue-500'
-        },
-        {
-          title: 'Metodología Canvas',
-          path: '/canvas-method',
-          icon: Target,
-          color: 'text-green-500'
-        },
-        {
-          title: 'PESTEL',
-          path: '/pestel-analysis',
-          icon: Globe,
-          color: 'text-purple-500'
-        },
-        {
-          title: '5 Fuerzas de Porter',
-          path: '/porter-forces',
-          icon: Shield,
-          color: 'text-red-500'
-        },
-        {
-          title: 'Benchmarking',
-          path: '/benchmarking',
-          icon: Activity,
-          color: 'text-yellow-500'
-        },
-        {
-          title: 'Factores Críticos',
-          path: '/critical-factors',
-          icon: Zap,
-          color: 'text-orange-500'
-        },
-        {
-          title: 'Ventaja Competitiva',
-          path: '/competitive-advantage',
-          icon: Award,
-          color: 'text-amber-600'
-        }
+        { id: 'marketing-objectives', label: 'Objetivos de Marketing', icon: Target },
+        { id: 'segmentation', label: 'Segmentación', icon: Users },
+        { id: 'market-research', label: 'Investigación de Mercado', icon: BarChart3 },
+        { id: 'positioning', label: 'Posicionamiento', icon: TrendingUp },
+        { id: 'marketing-mix', label: 'Marketing Mix', icon: MessageSquare },
+        { id: 'marketing-budget', label: 'Presupuesto Marketing', icon: DollarSign }
       ]
     },
     {
-      category: 'DIRECCIÓN ESTRATÉGICA',
+      id: 'operations',
+      label: 'Operaciones',
+      icon: Building,
+      type: 'section',
+      expanded: expandedSections.operations,
       items: [
-        {
-          title: 'Misión, Visión y Valores',
-          path: '/mission-vision',
-          icon: Eye,
-          color: 'text-indigo-500'
-        },
-        {
-          title: 'Objetivos Estratégicos',
-          path: '/strategic-objectives',
-          icon: Flag,
-          color: 'text-pink-500'
-        },
-        {
-          title: 'Estrategia Genérica',
-          path: '/generic-strategy',
-          icon: Compass,
-          color: 'text-cyan-500'
-        },
-        {
-          title: 'Control Estratégico (CMI)',
-          path: '/strategic-control',
-          icon: Settings,
-          color: 'text-slate-500'
-        }
+        { id: 'operations-objectives', label: 'Objetivos Operacionales', icon: Target },
+        { id: 'flow-diagram', label: 'Diagrama de Flujo', icon: TrendingUp },
+        { id: 'gantt-chart', label: 'Cronograma Gantt', icon: Calendar },
+        { id: 'operations-budget', label: 'Presupuesto Operacional', icon: DollarSign }
       ]
     },
     {
-      category: 'PLAN DE MARKETING',
+      id: 'financial',
+      label: 'Plan Financiero',
+      icon: DollarSign,
+      type: 'section',
+      expanded: expandedSections.financial,
       items: [
-        {
-          title: 'Objetivos',
-          path: '/marketing-objectives',
-          icon: Target,
-          color: 'text-emerald-500'
-        }
+        { id: 'financial-objectives', label: 'Objetivos Financieros', icon: Target },
+        { id: 'revenue-estimation', label: 'Estimación de Ingresos', icon: TrendingUp },
+        { id: 'cash-flow', label: 'Flujo de Caja', icon: BarChart3 },
+        { id: 'risk-analysis', label: 'Análisis de Riesgos', icon: PieChart }
       ]
     },
     {
-      category: 'OPERACIONES',
-      items: [
-        {
-          title: 'Objetivos Operacionales',
-          path: '/operations-objectives',
-          icon: Briefcase,
-          color: 'text-blue-600'
-        },
-        {
-          title: 'Diagrama de Flujos',
-          path: '/flow-diagram',
-          icon: Link2,
-          color: 'text-teal-600'
-        },
-        {
-          title: 'Carta Gantt',
-          path: '/gantt-chart',
-          icon: Calendar,
-          color: 'text-purple-600'
-        },
-        {
-          title: 'Presupuesto Operaciones',
-          path: '/operations-budget',
-          icon: DollarSign,
-          color: 'text-green-600'
-        }
-      ]
-    },
-    {
-      category: 'PLAN FINANCIERO',
-      items: [
-        {
-          title: 'Objetivos Financieros',
-          path: '/financial-objectives',
-          icon: DollarSign,
-          color: 'text-emerald-600'
-        },
-        {
-          title: 'Ingresos y Costos',
-          path: '/revenue-costs',
-          icon: PieChart,
-          color: 'text-blue-600'
-        },
-        {
-          title: 'Inversión Inicial',
-          path: '/initial-investment',
-          icon: Briefcase,
-          color: 'text-indigo-600'
-        }
-      ]
+      id: 'reports',
+      label: 'Reportes',
+      icon: FileText,
+      type: 'single'
     }
   ];
 
-  const isActive = (path) => location.pathname === path;
+  const NavItem = ({ item, isSubItem = false }) => {
+    const isActive = activeTab === item.id;
+    const Icon = item.icon;
 
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+    return (
+      <button
+        onClick={() => {
+          setActiveTab(item.id);
+          if (onClose) onClose();
+        }}
+        className={`w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg transition-colors ${
+          isActive
+            ? 'bg-blue-600 text-white shadow-lg'
+            : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
+        } ${isSubItem ? 'ml-4 text-sm' : ''}`}
+      >
+        <Icon size={isSubItem ? 16 : 18} />
+        <span className={`${isSubItem ? 'text-sm' : ''}`}>{item.label}</span>
+      </button>
+    );
   };
 
-  const toggleMobile = () => {
-    setIsMobileOpen(!isMobileOpen);
-  };
+  const SectionHeader = ({ section }) => {
+    const Icon = section.icon;
+    const ChevronIcon = section.expanded ? ChevronDown : ChevronRight;
 
-  const closeMobile = () => {
-    setIsMobileOpen(false);
+    return (
+      <button
+        onClick={() => toggleSection(section.id)}
+        className="w-full flex items-center justify-between px-4 py-3 text-left text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+      >
+        <div className="flex items-center space-x-3">
+          <Icon size={18} />
+          <span className="font-medium">{section.label}</span>
+        </div>
+        <ChevronIcon size={16} />
+      </button>
+    );
   };
 
   return (
     <>
       {/* Overlay para móvil */}
-      {isMobileOpen && (
-        <div className="sidebar-overlay active" onClick={closeMobile}></div>
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={onClose}
+        />
       )}
 
-      <div className={`sidebar ${isCollapsed ? 'collapsed' : ''} ${isMobileOpen ? 'mobile-open' : ''}`}>
-        {/* Header del Sidebar */}
-        <div className="sidebar-header">
-          <div className="sidebar-brand">
-            {/* Espacio vacío */}
-          </div>
-          
-          {/* Botón de colapsar para desktop */}
-          <button
-            onClick={toggleCollapse}
-            className="collapse-btn desktop-only"
-            aria-label={isCollapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
-          >
-            {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-          </button>
-
-          {/* Botón de cerrar para móvil */}
-          <button
-            onClick={closeMobile}
-            className="collapse-btn mobile-only"
-            aria-label="Cerrar menú"
-          >
-            <ChevronLeft size={16} />
-          </button>
-        </div>
-
-        {/* Navegación */}
-        <nav className="sidebar-nav">
-          <ul className="nav-list">
-            {menuStructure.map((section, sectionIndex) => (
-              <li key={section.category} className="nav-section">
-                {!isCollapsed && section.category && (
-                  <div className="section-header">
-                    <span className="section-title">{section.category}</span>
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-16 left-0 h-full bg-white border-r border-gray-200 w-64 transform transition-transform duration-300 ease-in-out z-50 lg:translate-x-0 lg:static lg:z-auto ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="h-full overflow-y-auto">
+          <nav className="p-4 space-y-2">
+            {menuItems.map((item) => (
+              <div key={item.id}>
+                {item.type === 'single' ? (
+                  <NavItem item={item} />
+                ) : (
+                  <div className="space-y-1">
+                    <SectionHeader section={item} />
+                    {item.expanded && (
+                      <div className="space-y-1 ml-2">
+                        {item.items.map((subItem) => (
+                          <NavItem key={subItem.id} item={subItem} isSubItem />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
-                
-                <ul className="section-items">
-                  {section.items.map((item, itemIndex) => {
-                    const Icon = item.icon;
-                    const active = isActive(item.path);
-                    
-                    return (
-                      <li key={item.path} className="nav-item">
-                        <Link
-                          to={item.path}
-                          className={`nav-link ${active ? 'active' : ''}`}
-                          title={isCollapsed ? item.title : ''}
-                          onClick={closeMobile}
-                        >
-                          <Icon size={16} className={`nav-icon ${item.color}`} />
-                          
-                          {!isCollapsed && (
-                            <span className="nav-text">{item.title}</span>
-                          )}
-                          
-                          {active && <div className="active-indicator"></div>}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </li>
+              </div>
             ))}
-          </ul>
-        </nav>
-      </div>
+          </nav>
 
-      {/* Botón móvil toggle - fuera del sidebar */}
-      <button
-        onClick={toggleMobile}
-        className="sidebar-mobile-toggle"
-        aria-label="Abrir menú"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
+          {/* Footer del sidebar */}
+          <div className="p-4 border-t border-gray-200 mt-auto">
+            <div className="bg-blue-50 rounded-lg p-4">
+              <h4 className="text-sm font-medium text-blue-800 mb-1">
+                ¿Necesitas ayuda?
+              </h4>
+              <p className="text-xs text-blue-600 mb-2">
+                Consulta nuestra documentación
+              </p>
+              <button className="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors">
+                Ver Guías
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
     </>
   );
 };
