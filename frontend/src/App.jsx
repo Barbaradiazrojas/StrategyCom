@@ -1,6 +1,19 @@
+// frontend/src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+
+// Componentes comunes
+import Navbar from './components/common/Navbar';
+import Sidebar from './components/common/Sidebar';
+
+// Páginas públicas
+import HomePage from './pages/public/HomePage';
+
+// Páginas de la aplicación
+import Dashboard from './pages/app/Dashboard';
+
+// Páginas de análisis estratégico
 import ProblemAnalysis from './pages/app/strategic/ProblemAnalysis';
 import CanvasMethod from './pages/app/strategic/CanvasMethod';
 import PestelAnalysis from './pages/app/strategic/PestelAnalysis';
@@ -8,460 +21,138 @@ import PorterForces from './pages/app/strategic/PorterForces';
 import ValueChain from './pages/app/strategic/ValueChain';
 import SwotAnalysis from './pages/app/strategic/SwotAnalysis';
 import Benchmarking from './pages/app/strategic/Benchmarking';
+import CriticalFactors from './pages/app/strategic/CriticalFactors';
+import CompetitiveAdvantage from './pages/app/strategic/CompetitiveAdvantage';
+
+// Componente Layout para páginas de la app
+const AppLayout = ({ children }) => {
+  return (
+    <div className="app-layout flex">
+      {/* Sidebar */}
+      <Sidebar />
+      
+      {/* Contenido principal */}
+      <div className="app-content flex-1">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+// Componente Layout para páginas públicas
+const PublicLayout = ({ children }) => {
+  return (
+    <div className="public-layout">
+      {children}
+    </div>
+  );
+};
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Routes>
-          <Route path="/" element={
-            <div style={{ padding: '40px', textAlign: 'center' }}>
-              <h1 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>StrategyCom</h1>
-              <p style={{ fontSize: '1.2rem', marginBottom: '30px', color: '#666' }}>
-                Plataforma de Análisis Estratégico para Emprendedores
-              </p>
-              <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <Link 
-                  to="/problem-analysis" 
-                  style={{ 
-                    background: '#3B82F6', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  📊 Análisis del Problema
-                </Link>
-                <Link 
-                  to="/canvas-method" 
-                  style={{ 
-                    background: '#10B981', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  🎯 Método Canvas
-                </Link>
-                <Link 
-                  to="/pestel-analysis" 
-                  style={{ 
-                    background: '#8B5CF6', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  🌍 Análisis PESTEL
-                </Link>
-                <Link 
-                  to="/porter-forces" 
-                  style={{ 
-                    background: '#DC2626', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  ⚔️ 5 Fuerzas de Porter
-                </Link>
-                <Link 
-                  to="/value-chain" 
-                  style={{ 
-                    background: '#059669', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  🔗 Cadena de Valor
-                </Link>
-                <Link 
-                  to="/swot-analysis" 
-                  style={{ 
-                    background: '#9333ea', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  🎯 Análisis FODA
-                </Link>
-                <Link 
-                  to="/benchmarking" 
-                  style={{ 
-                    background: '#F59E0B', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  📈 Benchmarking
-                </Link>
-                <a 
-                  href="http://localhost:5000/health" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  style={{ 
-                    background: '#6B7280', 
-                    color: 'white', 
-                    padding: '12px 24px', 
-                    textDecoration: 'none', 
-                    borderRadius: '8px',
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  🔗 Verificar Backend
-                </a>
-              </div>
-              
-              {/* Sección de información adicional */}
-              <div style={{ 
-                marginTop: '50px', 
-                padding: '30px', 
-                background: '#f8fafc', 
-                borderRadius: '12px',
-                maxWidth: '1200px',
-                margin: '50px auto 0'
-              }}>
-                <h2 style={{ fontSize: '1.8rem', marginBottom: '20px', color: '#374151' }}>
-                  Metodologías Disponibles
-                </h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '8px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}>
-                    <h3 style={{ color: '#3B82F6', marginBottom: '10px' }}>📊 Análisis del Problema</h3>
-                    <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>
-                      Identifica y define claramente el problema que tu emprendimiento busca resolver
-                    </p>
-                  </div>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '8px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}>
-                    <h3 style={{ color: '#10B981', marginBottom: '10px' }}>🎯 Business Model Canvas</h3>
-                    <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>
-                      Visualiza y diseña tu modelo de negocio de forma integral en 9 bloques clave
-                    </p>
-                  </div>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '8px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}>
-                    <h3 style={{ color: '#8B5CF6', marginBottom: '10px' }}>🌍 Análisis PESTEL</h3>
-                    <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>
-                      Evalúa los factores del entorno: Político, Económico, Social, Tecnológico, Ecológico y Legal
-                    </p>
-                  </div>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '8px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}>
-                    <h3 style={{ color: '#DC2626', marginBottom: '10px' }}>⚔️ 5 Fuerzas de Porter</h3>
-                    <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>
-                      Analiza la competitividad y atractividad de tu industria mediante 5 fuerzas clave
-                    </p>
-                  </div>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '8px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}>
-                    <h3 style={{ color: '#059669', marginBottom: '10px' }}>🔗 Cadena de Valor</h3>
-                    <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>
-                      Analiza las actividades internas de tu empresa para identificar ventajas competitivas
-                    </p>
-                  </div>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '8px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}>
-                    <h3 style={{ color: '#9333ea', marginBottom: '10px' }}>🎯 Análisis FODA</h3>
-                    <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>
-                      Síntesis estratégica: Fortalezas, Oportunidades, Debilidades y Amenazas
-                    </p>
-                  </div>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '8px',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-                  }}>
-                    <h3 style={{ color: '#F59E0B', marginBottom: '10px' }}>📈 Benchmarking</h3>
-                    <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>
-                      Compara y evalúa tu empresa contra competidores y mejores prácticas de la industria
-                    </p>
+        {/* Navbar global - aparece en todas las páginas */}
+        <Navbar />
+        
+        {/* Contenido principal con padding-top para el navbar fijo */}
+        <main className="main-content">
+          <Routes>
+            {/* PÁGINA PÚBLICA - HomePage SIN SIDEBAR */}
+            <Route path="/" element={
+              <PublicLayout>
+                <HomePage />
+              </PublicLayout>
+            } />
+            
+            {/* Otras páginas públicas - Sin Sidebar */}
+            <Route path="/about" element={
+              <PublicLayout>
+                <div className="page-container">
+                  <div className="coming-soon">
+                    <h1>Sobre Nosotros</h1>
+                    <p>Esta página estará disponible próximamente.</p>
+                    <Link to="/" className="back-home">Volver al Inicio</Link>
                   </div>
                 </div>
-              </div>
-
-              {/* Flujo de metodologías */}
-              <div style={{ 
-                marginTop: '40px', 
-                padding: '25px', 
-                background: 'linear-gradient(135deg, #667eea20 0%, #764ba220 100%)', 
-                borderRadius: '12px',
-                maxWidth: '1200px',
-                margin: '40px auto 0'
-              }}>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px', color: '#374151' }}>
-                  Flujo Recomendado
-                </h3>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'center', 
-                  alignItems: 'center', 
-                  gap: '10px',
-                  flexWrap: 'wrap'
-                }}>
-                  <span style={{ 
-                    background: '#3B82F6', 
-                    color: 'white', 
-                    padding: '8px 16px', 
-                    borderRadius: '20px',
-                    fontSize: '0.9rem',
-                    fontWeight: '600'
-                  }}>
-                    1. Problema
-                  </span>
-                  <span style={{ color: '#6B7280', fontSize: '1.2rem' }}>→</span>
-                  <span style={{ 
-                    background: '#10B981', 
-                    color: 'white', 
-                    padding: '8px 16px', 
-                    borderRadius: '20px',
-                    fontSize: '0.9rem',
-                    fontWeight: '600'
-                  }}>
-                    2. Canvas
-                  </span>
-                  <span style={{ color: '#6B7280', fontSize: '1.2rem' }}>→</span>
-                  <span style={{ 
-                    background: '#8B5CF6', 
-                    color: 'white', 
-                    padding: '8px 16px', 
-                    borderRadius: '20px',
-                    fontSize: '0.9rem',
-                    fontWeight: '600'
-                  }}>
-                    3. PESTEL
-                  </span>
-                  <span style={{ color: '#6B7280', fontSize: '1.2rem' }}>→</span>
-                  <span style={{ 
-                    background: '#DC2626', 
-                    color: 'white', 
-                    padding: '8px 16px', 
-                    borderRadius: '20px',
-                    fontSize: '0.9rem',
-                    fontWeight: '600'
-                  }}>
-                    4. Porter
-                  </span>
-                  <span style={{ color: '#6B7280', fontSize: '1.2rem' }}>→</span>
-                  <span style={{ 
-                    background: '#059669', 
-                    color: 'white', 
-                    padding: '8px 16px', 
-                    borderRadius: '20px',
-                    fontSize: '0.9rem',
-                    fontWeight: '600'
-                  }}>
-                    5. Cadena de Valor
-                  </span>
-                  <span style={{ color: '#6B7280', fontSize: '1.2rem' }}>→</span>
-                  <span style={{ 
-                    background: '#9333ea', 
-                    color: 'white', 
-                    padding: '8px 16px', 
-                    borderRadius: '20px',
-                    fontSize: '0.9rem',
-                    fontWeight: '600'
-                  }}>
-                    6. FODA
-                  </span>
-                  <span style={{ color: '#6B7280', fontSize: '1.2rem' }}>→</span>
-                  <span style={{ 
-                    background: '#F59E0B', 
-                    color: 'white', 
-                    padding: '8px 16px', 
-                    borderRadius: '20px',
-                    fontSize: '0.9rem',
-                    fontWeight: '600'
-                  }}>
-                    7. Benchmarking
-                  </span>
-                </div>
-                <p style={{ 
-                  fontSize: '0.85rem', 
-                  color: '#6B7280', 
-                  marginTop: '15px',
-                  lineHeight: '1.5',
-                  textAlign: 'center'
-                }}>
-                  Define el problema → Diseña tu modelo de negocio → Analiza el entorno → Evalúa la competitividad → 
-                  Examina actividades internas → Sintetiza en matriz FODA → Compara con la competencia
-                </p>
-              </div>
-
-              {/* Información adicional sobre FODA */}
-              <div style={{ 
-                marginTop: '30px', 
-                padding: '20px', 
-                background: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)', 
-                borderRadius: '12px',
-                maxWidth: '1000px',
-                margin: '30px auto 0',
-                border: '1px solid #c4b5fd'
-              }}>
-                <h4 style={{ 
-                  fontSize: '1.2rem', 
-                  marginBottom: '12px', 
-                  color: '#6b21a8',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px'
-                }}>
-                  🎯 ¿Por qué usar el Análisis FODA?
-                </h4>
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-                  gap: '15px',
-                  marginTop: '15px'
-                }}>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🔄</div>
-                    <p style={{ color: '#7c3aed', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Síntesis Estratégica
-                    </p>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🎯</div>
-                    <p style={{ color: '#7c3aed', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Estrategias Dirigidas
-                    </p>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>📊</div>
-                    <p style={{ color: '#7c3aed', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Decisiones Informadas
-                    </p>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>⚖️</div>
-                    <p style={{ color: '#7c3aed', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Balance Interno/Externo
-                    </p>
+              </PublicLayout>
+            } />
+            
+            <Route path="/blog" element={
+              <PublicLayout>
+                <div className="page-container">
+                  <div className="coming-soon">
+                    <h1>Blog</h1>
+                    <p>Nuestro blog estará disponible próximamente.</p>
+                    <Link to="/" className="back-home">Volver al Inicio</Link>
                   </div>
                 </div>
-              </div>
+              </PublicLayout>
+            } />
 
-              {/* Información adicional sobre la Cadena de Valor */}
-              <div style={{ 
-                marginTop: '30px', 
-                padding: '20px', 
-                background: 'linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)', 
-                borderRadius: '12px',
-                maxWidth: '1000px',
-                margin: '30px auto 0',
-                border: '1px solid #a7f3d0'
-              }}>
-                <h4 style={{ 
-                  fontSize: '1.2rem', 
-                  marginBottom: '12px', 
-                  color: '#065f46',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px'
-                }}>
-                  🔗 ¿Por qué usar la Cadena de Valor?
-                </h4>
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-                  gap: '15px',
-                  marginTop: '15px'
-                }}>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>⚡</div>
-                    <p style={{ color: '#047857', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Identifica Eficiencias
-                    </p>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>💰</div>
-                    <p style={{ color: '#047857', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Optimiza Costos
-                    </p>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🎯</div>
-                    <p style={{ color: '#047857', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Ventaja Competitiva
-                    </p>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '2rem', marginBottom: '8px' }}>📊</div>
-                    <p style={{ color: '#047857', fontSize: '0.9rem', margin: 0, fontWeight: '600' }}>
-                      Análisis Interno
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Footer con información del proyecto */}
-              <div style={{ 
-                marginTop: '40px', 
-                padding: '20px',
-                borderTop: '1px solid #e5e7eb',
-                color: '#6B7280',
-                fontSize: '0.9rem'
-              }}>
-                <p>🚀 Proyecto de Título - Full Stack Development</p>
-                <p>Tecnologías: React • Node.js • Express • PostgreSQL</p>
-                <p style={{ fontSize: '0.8rem', marginTop: '10px' }}>
-                  ✨ Ahora con Cadena de Valor y Análisis FODA integrados
-                </p>
-              </div>
-            </div>
-          } />
-          <Route path="/problem-analysis" element={<ProblemAnalysis />} />
-          <Route path="/canvas-method" element={<CanvasMethod />} />
-          <Route path="/pestel-analysis" element={<PestelAnalysis />} />
-          <Route path="/porter-forces" element={<PorterForces />} />
-          <Route path="/value-chain" element={<ValueChain />} />
-          <Route path="/swot-analysis" element={<SwotAnalysis />} />
-          <Route path="/benchmarking" element={<Benchmarking />} />
-        </Routes>
+            {/* PÁGINAS DE LA APLICACIÓN - CON SIDEBAR */}
+            <Route path="/dashboard" element={
+              <AppLayout>
+                <Dashboard />
+              </AppLayout>
+            } />
+            
+            {/* Rutas de análisis estratégico - Con Sidebar */}
+            <Route path="/problem-analysis" element={
+              <AppLayout>
+                <ProblemAnalysis />
+              </AppLayout>
+            } />
+            
+            <Route path="/canvas-method" element={
+              <AppLayout>
+                <CanvasMethod />
+              </AppLayout>
+            } />
+            
+            <Route path="/pestel-analysis" element={
+              <AppLayout>
+                <PestelAnalysis />
+              </AppLayout>
+            } />
+            
+            <Route path="/porter-forces" element={
+              <AppLayout>
+                <PorterForces />
+              </AppLayout>
+            } />
+            
+            <Route path="/critical-factors" element={
+              <AppLayout>
+                <CriticalFactors />
+              </AppLayout>
+            } />
+            
+            <Route path="/value-chain" element={
+              <AppLayout>
+                <ValueChain />
+              </AppLayout>
+            } />
+            
+            <Route path="/swot-analysis" element={
+              <AppLayout>
+                <SwotAnalysis />
+              </AppLayout>
+            } />
+            
+            <Route path="/benchmarking" element={
+              <AppLayout>
+                <Benchmarking />
+              </AppLayout>
+            } />
+            
+            <Route path="/competitive-advantage" element={
+              <AppLayout>
+                <CompetitiveAdvantage />
+              </AppLayout>
+            } />
+          </Routes>
+        </main>
       </div>
     </Router>
   );
