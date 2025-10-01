@@ -85,15 +85,22 @@ const Navbar = () => {
       name: 'Herramientas', 
       path: '/tools',
       dropdown: [
-        { name: 'Análisis del Problema', path: '/problem-analysis' },
-        { name: 'Business Model Canvas', path: '/canvas-method' },
-        { name: 'Análisis PESTEL', path: '/pestel-analysis' },
-        { name: '5 Fuerzas de Porter', path: '/porter-forces' },
-        { name: 'Factores Críticos', path: '/critical-factors' },
-        { name: 'Cadena de Valor', path: '/value-chain' },
-        { name: 'Análisis FODA', path: '/swot-analysis' },
-        { name: 'Benchmarking', path: '/benchmarking' },
-        { name: 'Ventajas Competitivas', path: '/competitive-advantage' }
+        // Análisis Estratégico
+        { name: 'Análisis del Problema', path: '/problem-analysis', section: 'Análisis Estratégico' },
+        { name: 'Business Model Canvas', path: '/canvas-method', section: 'Análisis Estratégico' },
+        { name: 'Análisis PESTEL', path: '/pestel-analysis', section: 'Análisis Estratégico' },
+        { name: '5 Fuerzas de Porter', path: '/porter-forces', section: 'Análisis Estratégico' },
+        { name: 'Factores Críticos', path: '/critical-factors', section: 'Análisis Estratégico' },
+        { name: 'Cadena de Valor', path: '/value-chain', section: 'Análisis Estratégico' },
+        { name: 'Análisis FODA', path: '/swot-analysis', section: 'Análisis Estratégico' },
+        { name: 'Benchmarking', path: '/benchmarking', section: 'Análisis Estratégico' },
+        { name: 'Ventajas Competitivas', path: '/competitive-advantage', section: 'Análisis Estratégico' },
+        
+        // Dirección Estratégica
+        { name: 'Misión, Visión y Valores', path: '/mission-vision', section: 'Dirección Estratégica' },
+        { name: 'Objetivos Estratégicos', path: '/strategic-objectives', section: 'Dirección Estratégica' },
+        { name: 'Estrategia Genérica', path: '/generic-strategy', section: 'Dirección Estratégica' },
+        { name: 'Balanced Scorecard (CMI)', path: '/balanced-scorecard', section: 'Dirección Estratégica' }
       ]
     }
   ];
@@ -130,7 +137,7 @@ const Navbar = () => {
         setLoginForm({ email: '', password: '' });
         
         // Redirigir al dashboard o área privada
-        navigate('/problem-analysis');
+        navigate('/dashboard');
       }
     } catch (error) {
       console.error('Error en login:', error);
@@ -151,6 +158,19 @@ const Navbar = () => {
       return location.pathname === path;
     }
     return location.pathname.startsWith(path);
+  };
+
+  // Agrupar items del dropdown por sección
+  const groupedDropdownItems = (items) => {
+    const sections = {};
+    items.forEach(item => {
+      const section = item.section || 'Otras';
+      if (!sections[section]) {
+        sections[section] = [];
+      }
+      sections[section].push(item);
+    });
+    return sections;
   };
 
   return (
@@ -175,16 +195,21 @@ const Navbar = () => {
                       {item.name}
                       <ChevronDown size={16} />
                     </button>
-                    <div className="dropdown-menu">
-                      {item.dropdown.map((subItem, subIndex) => (
-                        <Link
-                          key={subIndex}
-                          to={subItem.path}
-                          className="dropdown-item"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {subItem.name}
-                        </Link>
+                    <div className="dropdown-menu mega-menu">
+                      {Object.entries(groupedDropdownItems(item.dropdown)).map(([section, items]) => (
+                        <div key={section} className="dropdown-section">
+                          <h4 className="dropdown-section-title">{section}</h4>
+                          {items.map((subItem, subIndex) => (
+                            <Link
+                              key={subIndex}
+                              to={subItem.path}
+                              className="dropdown-item"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -266,15 +291,20 @@ const Navbar = () => {
               {item.dropdown ? (
                 <div className="mobile-dropdown">
                   <div className="mobile-dropdown-header">{item.name}</div>
-                  {item.dropdown.map((subItem, subIndex) => (
-                    <Link
-                      key={subIndex}
-                      to={subItem.path}
-                      className="mobile-nav-link sub-item"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {subItem.name}
-                    </Link>
+                  {Object.entries(groupedDropdownItems(item.dropdown)).map(([section, items]) => (
+                    <div key={section} className="mobile-section">
+                      <div className="mobile-section-title">{section}</div>
+                      {items.map((subItem, subIndex) => (
+                        <Link
+                          key={subIndex}
+                          to={subItem.path}
+                          className="mobile-nav-link sub-item"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
                   ))}
                 </div>
               ) : (

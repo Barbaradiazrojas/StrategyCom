@@ -1,14 +1,18 @@
 // frontend/src/components/common/Sidebar.jsx
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   BarChart3, Target, MessageSquare, Users, Calendar, FileText, 
   TrendingUp, Brain, Lightbulb, PieChart, Building, DollarSign,
-  ChevronDown, ChevronRight
+  ChevronDown, ChevronRight, Compass, Flag
 } from 'lucide-react';
+import './Sidebar.css';
 
-const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
+const Sidebar = ({ isOpen, onClose }) => {
+  const location = useLocation();
   const [expandedSections, setExpandedSections] = React.useState({
     strategic: false,
+    direction: false,
     marketing: false,
     operations: false,
     financial: false
@@ -26,7 +30,8 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
       id: 'dashboard',
       label: 'Dashboard',
       icon: BarChart3,
-      type: 'single'
+      type: 'single',
+      path: '/dashboard'
     },
     {
       id: 'strategic',
@@ -35,12 +40,28 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
       type: 'section',
       expanded: expandedSections.strategic,
       items: [
-        { id: 'problem-analysis', label: 'Análisis de Problemas', icon: Target },
-        { id: 'canvas-method', label: 'Canvas Method', icon: Lightbulb },
-        { id: 'pestel-analysis', label: 'Análisis PESTEL', icon: TrendingUp },
-        { id: 'porter-forces', label: 'Fuerzas de Porter', icon: Building },
-        { id: 'benchmarking', label: 'Benchmarking', icon: PieChart },
-        { id: 'swot-analysis', label: 'Análisis SWOT', icon: Target }
+        { id: 'problem-analysis', label: 'Análisis de Problemas', icon: Target, path: '/problem-analysis' },
+        { id: 'canvas-method', label: 'Canvas Method', icon: Lightbulb, path: '/canvas-method' },
+        { id: 'pestel-analysis', label: 'Análisis PESTEL', icon: TrendingUp, path: '/pestel-analysis' },
+        { id: 'porter-forces', label: 'Fuerzas de Porter', icon: Building, path: '/porter-forces' },
+        { id: 'critical-factors', label: 'Factores Críticos', icon: Flag, path: '/critical-factors' },
+        { id: 'value-chain', label: 'Cadena de Valor', icon: TrendingUp, path: '/value-chain' },
+        { id: 'swot-analysis', label: 'Análisis SWOT', icon: Target, path: '/swot-analysis' },
+        { id: 'benchmarking', label: 'Benchmarking', icon: PieChart, path: '/benchmarking' },
+        { id: 'competitive-advantage', label: 'Ventaja Competitiva', icon: TrendingUp, path: '/competitive-advantage' }
+      ]
+    },
+    {
+      id: 'direction',
+      label: 'Dirección Estratégica',
+      icon: Compass,
+      type: 'section',
+      expanded: expandedSections.direction,
+      items: [
+        { id: 'mission-vision', label: 'Misión, Visión y Valores', icon: Flag, path: '/mission-vision' },
+        { id: 'strategic-objectives', label: 'Objetivos Estratégicos', icon: Target, path: '/strategic-objectives' },
+        { id: 'generic-strategy', label: 'Estrategia Genérica', icon: Lightbulb, path: '/generic-strategy' },
+        { id: 'balanced-scorecard', label: 'Cuadro de Mando', icon: BarChart3, path: '/balanced-scorecard' }
       ]
     },
     {
@@ -50,12 +71,12 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
       type: 'section',
       expanded: expandedSections.marketing,
       items: [
-        { id: 'marketing-objectives', label: 'Objetivos de Marketing', icon: Target },
-        { id: 'segmentation', label: 'Segmentación', icon: Users },
-        { id: 'market-research', label: 'Investigación de Mercado', icon: BarChart3 },
-        { id: 'positioning', label: 'Posicionamiento', icon: TrendingUp },
-        { id: 'marketing-mix', label: 'Marketing Mix', icon: MessageSquare },
-        { id: 'marketing-budget', label: 'Presupuesto Marketing', icon: DollarSign }
+        { id: 'marketing-objectives', label: 'Objetivos de Marketing', icon: Target, path: '/marketing-objectives' },
+        { id: 'segmentation', label: 'Segmentación', icon: Users, path: '/segmentation' },
+        { id: 'market-research', label: 'Investigación de Mercado', icon: BarChart3, path: '/market-research' },
+        { id: 'positioning', label: 'Posicionamiento', icon: TrendingUp, path: '/positioning' },
+        { id: 'marketing-mix', label: 'Marketing Mix', icon: MessageSquare, path: '/marketing-mix' },
+        { id: 'marketing-budget', label: 'Presupuesto Marketing', icon: DollarSign, path: '/marketing-budget' }
       ]
     },
     {
@@ -65,10 +86,10 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
       type: 'section',
       expanded: expandedSections.operations,
       items: [
-        { id: 'operations-objectives', label: 'Objetivos Operacionales', icon: Target },
-        { id: 'flow-diagram', label: 'Diagrama de Flujo', icon: TrendingUp },
-        { id: 'gantt-chart', label: 'Cronograma Gantt', icon: Calendar },
-        { id: 'operations-budget', label: 'Presupuesto Operacional', icon: DollarSign }
+        { id: 'operations-objectives', label: 'Objetivos Operacionales', icon: Target, path: '/operations-objectives' },
+        { id: 'flow-diagram', label: 'Diagrama de Flujo', icon: TrendingUp, path: '/flow-diagram' },
+        { id: 'gantt-chart', label: 'Cronograma Gantt', icon: Calendar, path: '/gantt-chart' },
+        { id: 'operations-budget', label: 'Presupuesto Operacional', icon: DollarSign, path: '/operations-budget' }
       ]
     },
     {
@@ -78,28 +99,29 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
       type: 'section',
       expanded: expandedSections.financial,
       items: [
-        { id: 'financial-objectives', label: 'Objetivos Financieros', icon: Target },
-        { id: 'revenue-estimation', label: 'Estimación de Ingresos', icon: TrendingUp },
-        { id: 'cash-flow', label: 'Flujo de Caja', icon: BarChart3 },
-        { id: 'risk-analysis', label: 'Análisis de Riesgos', icon: PieChart }
+        { id: 'financial-objectives', label: 'Objetivos Financieros', icon: Target, path: '/financial-objectives' },
+        { id: 'revenue-estimation', label: 'Estimación de Ingresos', icon: TrendingUp, path: '/revenue-estimation' },
+        { id: 'cash-flow', label: 'Flujo de Caja', icon: BarChart3, path: '/cash-flow' },
+        { id: 'risk-analysis', label: 'Análisis de Riesgos', icon: PieChart, path: '/risk-analysis' }
       ]
     },
     {
       id: 'reports',
       label: 'Reportes',
       icon: FileText,
-      type: 'single'
+      type: 'single',
+      path: '/reports'
     }
   ];
 
   const NavItem = ({ item, isSubItem = false }) => {
-    const isActive = activeTab === item.id;
+    const isActive = location.pathname === item.path;
     const Icon = item.icon;
 
     return (
-      <button
+      <Link
+        to={item.path}
         onClick={() => {
-          setActiveTab(item.id);
           if (onClose) onClose();
         }}
         className={`w-full flex items-center space-x-3 px-4 py-3 text-left rounded-lg transition-colors ${
@@ -110,7 +132,7 @@ const Sidebar = ({ activeTab, setActiveTab, isOpen, onClose }) => {
       >
         <Icon size={isSubItem ? 16 : 18} />
         <span className={`${isSubItem ? 'text-sm' : ''}`}>{item.label}</span>
-      </button>
+      </Link>
     );
   };
 

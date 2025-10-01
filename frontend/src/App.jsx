@@ -13,7 +13,7 @@ import HomePage from './pages/public/HomePage';
 // Páginas de la aplicación
 import Dashboard from './pages/app/Dashboard';
 
-// Páginas de análisis estratégico
+// ==================== ANÁLISIS ESTRATÉGICO ====================
 import ProblemAnalysis from './pages/app/strategic/ProblemAnalysis';
 import CanvasMethod from './pages/app/strategic/CanvasMethod';
 import PestelAnalysis from './pages/app/strategic/PestelAnalysis';
@@ -23,6 +23,12 @@ import SwotAnalysis from './pages/app/strategic/SwotAnalysis';
 import Benchmarking from './pages/app/strategic/Benchmarking';
 import CriticalFactors from './pages/app/strategic/CriticalFactors';
 import CompetitiveAdvantage from './pages/app/strategic/CompetitiveAdvantage';
+
+// ==================== DIRECCIÓN ESTRATÉGICA ====================
+import MissionVision from './pages/app/direction/MissionVission';
+import StrategicObjectives from './pages/app/direction/StrategicObjectives';
+import GenericStrategy from './pages/app/direction/GenericStrategy';
+import BalancedScorecard from './pages/app/direction/BalancedScorecard';
 
 // Componente Layout para páginas de la app
 const AppLayout = ({ children }) => {
@@ -58,14 +64,16 @@ function App() {
         {/* Contenido principal con padding-top para el navbar fijo */}
         <main className="main-content">
           <Routes>
-            {/* PÁGINA PÚBLICA - HomePage SIN SIDEBAR */}
+            {/* ================================================ */}
+            {/*           PÁGINAS PÚBLICAS - SIN SIDEBAR         */}
+            {/* ================================================ */}
+            
             <Route path="/" element={
               <PublicLayout>
                 <HomePage />
               </PublicLayout>
             } />
             
-            {/* Otras páginas públicas - Sin Sidebar */}
             <Route path="/about" element={
               <PublicLayout>
                 <div className="page-container">
@@ -90,67 +98,115 @@ function App() {
               </PublicLayout>
             } />
 
-            {/* PÁGINAS DE LA APLICACIÓN - CON SIDEBAR */}
+            {/* ================================================ */}
+            {/*                    DASHBOARD                     */}
+            {/* ================================================ */}
+            
             <Route path="/dashboard" element={
               <AppLayout>
                 <Dashboard />
               </AppLayout>
             } />
             
-            {/* Rutas de análisis estratégico - Con Sidebar */}
+            {/* ================================================ */}
+            {/*              ANÁLISIS ESTRATÉGICO                */}
+            {/* ================================================ */}
+            
+            {/* Análisis del Problema */}
             <Route path="/problem-analysis" element={
               <AppLayout>
                 <ProblemAnalysis />
               </AppLayout>
             } />
             
+            {/* Business Model Canvas */}
             <Route path="/canvas-method" element={
               <AppLayout>
                 <CanvasMethod />
               </AppLayout>
             } />
             
+            {/* Análisis PESTEL */}
             <Route path="/pestel-analysis" element={
               <AppLayout>
                 <PestelAnalysis />
               </AppLayout>
             } />
             
+            {/* 5 Fuerzas de Porter */}
             <Route path="/porter-forces" element={
               <AppLayout>
                 <PorterForces />
               </AppLayout>
             } />
             
+            {/* Factores Críticos de Éxito */}
             <Route path="/critical-factors" element={
               <AppLayout>
                 <CriticalFactors />
               </AppLayout>
             } />
             
+            {/* Cadena de Valor */}
             <Route path="/value-chain" element={
               <AppLayout>
                 <ValueChain />
               </AppLayout>
             } />
             
+            {/* Análisis FODA/SWOT */}
             <Route path="/swot-analysis" element={
               <AppLayout>
                 <SwotAnalysis />
               </AppLayout>
             } />
             
+            {/* Benchmarking */}
             <Route path="/benchmarking" element={
               <AppLayout>
                 <Benchmarking />
               </AppLayout>
             } />
             
+            {/* Ventaja Competitiva */}
             <Route path="/competitive-advantage" element={
               <AppLayout>
                 <CompetitiveAdvantage />
               </AppLayout>
             } />
+
+            {/* ================================================ */}
+            {/*             DIRECCIÓN ESTRATÉGICA                */}
+            {/* ================================================ */}
+            
+            {/* Misión, Visión y Valores */}
+            <Route path="/mission-vision" element={
+              <AppLayout>
+                <MissionVision />
+              </AppLayout>
+            } />
+            
+            {/* Objetivos Estratégicos con método SMART */}
+            <Route path="/strategic-objectives" element={
+              <AppLayout>
+                <StrategicObjectives />
+              </AppLayout>
+            } />
+            
+            {/* Estrategia Genérica (Porter) */}
+            <Route path="/generic-strategy" element={
+              <AppLayout>
+                <GenericStrategy />
+              </AppLayout>
+            } />
+            
+            {/* Balanced Scorecard (CMI) */}
+            <Route path="/balanced-scorecard" element={
+              <AppLayout>
+                <BalancedScorecard />
+              </AppLayout>
+            } />
+
           </Routes>
         </main>
       </div>
